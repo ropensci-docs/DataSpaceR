@@ -1,0 +1,13 @@
+pandoc: '2.5'
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  DataSpaceR: DataSpaceR.html
+  Monoconal_Antibody_Data: Monoconal_Antibody_Data.html
+  Non_Integrated_Datasets: Non_Integrated_Datasets.html
+  Publication_Data: Publication_Data.html
+last_built: 2021-07-20T16:23Z
+urls:
+  reference: https://docs.ropensci.org/DataSpaceR/reference
+  article: https://docs.ropensci.org/DataSpaceR/articles
+

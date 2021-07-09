@@ -1,0 +1,12 @@
+{
+  "commit": {
+    "commit": "24b6d6a3243ef07c05ecfe2dbea82dc2c72b8b41",
+    "author": "jmtaylor-fhcrc <42221209+jmtaylor-fhcrc@users.noreply.github.com>",
+    "time": "2021-07-09 16:11:12",
+    "files": 2,
+    "merge": false,
+    "message": "Fb show ni available dataset (#36)\n\n* add available ni data to availableStudies active binding\r\n\r\n* make data_availability variable in availableStudies comma separated\r\n\r\n* Make ni data merge to availableStudies an outer join.\r\n\r\nCo-authored-by: Jason Taylor <you@example.com>\r\nCo-authored-by: jmtaylor-fhcrc <jmtaylor@frehutch.org>"
+  },
+  "remote": "https://github.com/ropensci/DataSpaceR",
+  "pkg": "DataSpaceR"
+}
