@@ -1,0 +1,12 @@
+{
+  "commit": {
+    "commit": "38184e5a19b72c1709fd181d8dbedaa1d374ed1a",
+    "author": "Jason Taylor <jmtaylor@fredhutch.org>",
+    "time": "2022-06-24 00:46:23",
+    "files": 5,
+    "merge": false,
+    "message": "update cran comments and documentation, submit to CRAN\n"
+  },
+  "repo": "https://github.com/ropensci/DataSpaceR",
+  "pkg": "DataSpaceR"
+}
