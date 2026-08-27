@@ -1,0 +1,13 @@
+{
+  "commit": {
+    "commit": "908f6f0aaff979a9a35d6ca803ce88245ca9790a",
+    "author": "Jason Taylor <42221209+jmtaylor-fhcrc@users.noreply.github.com>",
+    "time": "2026-08-27T16:52:32Z",
+    "files": 5,
+    "merge": false,
+    "message": "Revision release for DataSpaceR - v1.0.2 (#53)\n\n* Update API call syntax and download warning for publications\n* Remove duplicate non-standard data, make one table across studies\n* Update tests, version, news"
+  },
+  "repo": "https://github.com/ropensci/DataSpaceR",
+  "pkg": "DataSpaceR",
+  "time": "2026-08-27T22:42:35Z"
+}

@@ -1,0 +1,14 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  DataSpace_DAASH: DataSpace_DAASH.html
+  DataSpaceR: DataSpaceR.html
+  Monoconal_Antibody_Data: Monoconal_Antibody_Data.html
+  Publication_Data: Publication_Data.html
+  Studies_Groups: Studies_Groups.html
+  Virus_Name_Mapping_Tables: Virus_Name_Mapping_Tables.html
+last_built: 2026-08-27T22:42Z
+urls:
+  reference: https://docs.ropensci.org/DataSpaceR/reference
+  article: https://docs.ropensci.org/DataSpaceR/articles

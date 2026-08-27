@@ -1,0 +1,181 @@
+# Introduction to DataSpaceR
+
+The DataSpaceR package enables connecting to the CAVD DataSpace (CDS)
+database in R, making it easier to fetch datasets (NAB, BAMA, MAB,
+BCRseq, etc.) from specific CAVD (Collaboration for AIDS Vaccine
+Discovery) studies.
+
+The examples below are meant to show abridged console output and are not
+intended to be exhaustive. In order to view the latest and most complete
+data, please follow the steps below to configure and use DataSpaceR.
+
+### Update note from version 0.X to version 1.X
+
+> There have been some significant changes to DataSpaceR for version 1.
+> All created objects can host data from multiple members, for example,
+> studies can be queried in bulk rather than as individual studies. The
+> general API is similar, but users may now pass subsets of tables
+> showing available data to methods that fetch those data instead of
+> passing filter objects or IDs. This new method is similar to filtering
+> the mAb grid in previous versions, which allowed us to supersede that
+> method for getting mAb data, using our new method for getting mAbs
+> across all object types.
+
+## Configuration
+
+You will need a DataSpace account to get started. if you do not have one
+yet, first go to [DataSpace](https://dataspace.cavd.org) to set up your
+account. Note that access restrictions may be in place for certain
+datasets.
+
+In order to connect to the CAVD DataSpace via `DataSpaceR`, you will
+need a `netrc` file in your home directory that will contain a `machine`
+name (hostname of DataSpace), and `login` and `password`. There are two
+ways to create a `netrc` file.
+
+### Creating a netrc file with `writeNetrc`
+
+On your R console, create a `netrc` file using a function from
+`DataSpaceR`:
+
+``` r
+
+writeNetrc(
+  login = "yourEmail@address.com",
+  password = "yourSecretPassword",
+  netrcFile = "/your/home/directory/.netrc" # use getNetrcPath() to get the default path
+)
+```
+
+This will create a `netrc` file in your home directory. Make sure you
+have a valid login and password.
+
+### Manually creating a netrc file
+
+***Alternatively***, you can manually create a netrc file.
+
+- On Windows, this file should be named `_netrc`
+- On Linux/Mac, it should be named `.netrc`
+- The file should be located in the user’s home directory, and the
+  permissions on the file should be unreadable for everybody except the
+  owner.
+- To determine your home directory, run `Sys.getenv("HOME")` in R
+
+The following three lines must be included in the `.netrc` or `_netrc`
+file either separated by white space (spaces, tabs, or newlines) or
+commas. Multiple such blocks can exist in one file.
+
+    machine dataspace.cavd.org
+    login myuser@domain.com
+    password supersecretpassword
+
+See
+[here](https://www.labkey.org/Documentation/wiki-page.view?name=netrc)
+for more information about `netrc`.
+
+## Accessing Studies and Groups
+
+Most of the assay data found in DataSpace is associated with studies
+which can be grouped by subject features from inside the web application
+by users and shared. See the vignette [Accessing Studies and
+Groups](https://docs.ropensci.org/DataSpaceR/articles/Studies_Groups.md)
+for more information.
+
+## Accessing MAb and MAb Donor Data
+
+Connection objects can return `DataSpaceMabs` and `DataSpaceDonors`
+objects which are used to access mAb related data. See the vignette
+[Accessing Monoclonal Antibody
+Data](https://docs.ropensci.org/DataSpaceR/articles/Monoconal_Antibody_Data.md)
+for more information.
+
+## Accessing DataSpace DAASH
+
+The Database of Annotation Antibodies for HIV-1, or DAASH for short, can
+be accessed though mAb objects, or donor objects, or more directly via a
+`DataSpaceDaash` object. See the vigette [Accessing DataSpace
+DAASH](https://docs.ropensci.org/DataSpaceR/articles/DataSpace_DAASH.md)
+for more information.
+
+## Accessing Publication Data
+
+DataSpace maintains a curated collection of relevant publications, which
+can be accessed through the [Publications
+page](https://dataspace.cavd.org/cds/CAVD/app.view?#learn/learn/Publication)
+through the app. Metadata about these publications can be accessed
+through `DataSpaceR` with `con$availablePublications`.
+
+See the vignette [Accessing Publication
+Data](https://docs.ropensci.org/DataSpaceR/articles/Publication_Data.md)
+for a tutorial on accessing publication data with DataSpaceR.
+
+## Accessing Virus Metadata
+
+DataSpace maintains metadata about all viruses used in Neutralizing
+Antibody (NAb) assays. This data can be accessed through the app on the
+[NAb antigen
+page](https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB/antigens)
+and [NAb MAb antigen
+page](https://dataspace.cavd.org/cds/CAVD/app.view#learn/learn/Assay/NAB%20MAB/antigens).
+
+We can access this metadata in `DataSpaceR` with `availableViruses`:
+
+``` r
+
+con$availableViruses
+#> Key: <cds_virus_id>
+#>      cds_virus_id          virus                  virus_full_name virus_backbone virus_host_cell virus_plot_label
+#>            <char>         <char>                           <char>         <char>          <char>           <char>
+#>   1:        cds_1   0013095-2.11   0013095-2.11 [SG3Δenv] 293T/17        SG3Δenv         293T/17     0013095-2.11
+#>   2:       cds_10     0984.V2.C2     0984.V2.C2 [SG3Δenv] 293T/17        SG3Δenv         293T/17             <NA>
+#>   3:      cds_100 B005018-8_F6.3 B005018-8_F6.3 [SG3Δenv] 293T/17        SG3Δenv         293T/17             <NA>
+#>   4:      cds_101 B005582-7_G7.8 B005582-7_G7.8 [SG3Δenv] 293T/17        SG3Δenv         293T/17          B005582
+#>   5:      cds_102         BaL.26         BaL.26 [SG3Δenv] 293T/17        SG3Δenv         293T/17           BaL.26
+#>  ---                                                                                                             
+#> 799:       cds_94      92BR025.9      92BR025.9 [SG3Δenv] 293T/17        SG3Δenv         293T/17             <NA>
+#> 800:       cds_95      933.v4.c4      933.v4.c4 [SG3Δenv] 293T/17        SG3Δenv         293T/17             <NA>
+#> 801:       cds_97    98-F4_H5_13    98-F4_H5_13 [SG3Δenv] 293T/17        SG3Δenv         293T/17             <NA>
+#> 802:       cds_98 A07412M1.vrc12 A07412M1.vrc12 [SG3Δenv] 293T/17        SG3Δenv         293T/17             <NA>
+#> 803:       cds_99      AC10.0.29      AC10.0.29 [SG3Δenv] 293T/17        SG3Δenv         293T/17        AC10.0.29
+#>          virus_type virus_species  clade neutralization_tier
+#>              <char>        <char> <char>              <char>
+#>   1: Env Pseudotype           HIV   <NA>                   2
+#>   2: Env Pseudotype           HIV      C                   3
+#>   3: Env Pseudotype           HIV      C                   2
+#>   4: Env Pseudotype           HIV      C                <NA>
+#>   5: Env Pseudotype           HIV      B                  1B
+#>  ---                                                        
+#> 799: Env Pseudotype           HIV      C                <NA>
+#> 800: Env Pseudotype           HIV      C                   3
+#> 801: Env Pseudotype           HIV      C                   3
+#> 802: Env Pseudotype           HIV      D                   2
+#> 803: Env Pseudotype           HIV      B                   2
+#>                                                                                                                                                           virus_name_other
+#>                                                                                                                                                                     <char>
+#>   1:                                                                                                                                                                  <NA>
+#>   2:                                                                                                                                                            0984.v2.c2
+#>   3:                                                                                                                                                                  <NA>
+#>   4:                                                                                                                                              B005582, B005582-27_G7.8
+#>   5: BaL.26_TM, Bal.26, Bal.26 [SG3<94>~env] 293T/17, Bal.26 [SG3Δenv] 293T, HIV Bal.26, HIV Bal.26[-Luc]293T, HIV Bal.26[SG3<94>~env]293T/17, SG3�~env, SHIV 1157ipd3N4.3
+#>  ---                                                                                                                                                                      
+#> 799:             92BR025.9 [SG3<94>~env] 293T, 92BR025.9 [SG3<94>~env] 293T/17, HIV 92BR025.9, HIV 92BR025.9[SG3<94>~env]293T, HIV 92BR025.9[SG3<94>~env]293T/17, SG3�~env
+#> 800:                                                                                                                                                                  <NA>
+#> 801:                                                                                                                                                           98-F4_H5-13
+#> 802:                                                                                                                                  A07412M1.vrc12---349, A07412M1_VRC12
+#> 803:                                                                    AC10.0.29 [SG3<94>~env] 293T/17, AC10.0.29---451, HIV AC10.0.29, HIV AC10.0.29[SG3<94>~env]293T/17
+```
+
+## Accessing Help Files
+
+Help files for each of the objects and each’s documented public methods
+can be accessed using the help operator:
+
+``` r
+
+?DataSpaceConnection
+?DataSpaceStudies
+?DataSpaceGroups
+?DataSpaceMabs
+?DataSpaceDonors
+?DataSpaceDaash
+```

@@ -1,0 +1,72 @@
+# Accessing Monoclonal Antibody Data
+
+## Workflow overview
+
+The workflow for getting mAb data is very similar to getting study data
+or groups. Pass the `availableMabs` object to the `getMabs` method. This
+can be filtered in a pipe as shown below.
+
+``` r
+
+con <- connectDS()
+
+pgt121 <- con$availableMabs[mab_name_std == "PGT121"] |>
+  con$getMabs()
+```
+
+For the new mAb object, datsets are loaded automatically.
+
+``` r
+
+pgt121$datasets |>
+  names()
+#> [1] "NABMAb" "PKMAb"
+```
+
+And each dataset can be accessed in the same fashion as accessing an
+item in a named list.
+
+``` r
+
+pgt121$
+  datasets$
+  NABMAb
+```
+
+## View metadata concerning the mAb object
+
+Each mab object has metadata associated with it that can be viewed.
+
+``` r
+
+pgt121$mabMetadata
+#> Key: <mab_id>
+#>        mab_id mab_name_std mab_lanl_id mab_hxb2_location mab_ab_binding_type mab_isotype mab_class_id assays_available
+#>        <char>       <char>      <char>            <char>              <char>      <char>       <char>           <char>
+#> 1: cds_mab_26       PGT121        2635               Env     glycan/gp120 V3         IgG         <NA>  NAB MAB, PK MAB
+#>                         studies_available     donor_id sequences_available
+#>                                    <char>       <char>              <lgcl>
+#> 1: cvd270, cvd471, cvd473, cvd554, cvd719 cds_donor_36                TRUE
+pgt121$donorMetadata
+#>        donor_id donor_lanl_id donor_code donor_species donor_clade lineage_sequences_available mab_count sequence_count
+#>          <char>        <char>     <char>        <char>      <char>                      <lgcl>     <int>          <int>
+#> 1: cds_donor_36            26   Donor 17         human           A                       FALSE         8              8
+pgt121$mabMixMetadata
+#> Key: <mab_mix_id>
+#>          mab_mix_id            mab_mix_name_std mab_mix_name_other mab_mix_type virus_count titer_50_geomean
+#>              <char>                      <char>             <char>       <char>       <int>            <num>
+#>  1:  cds_mab_mix_36                      PGT121                      Single mAb         539       0.07817056
+#>  2: cds_mab_mix_459       PGT121 (Clinical BDS)             PGT121   Single mAb          36       0.09557637
+#>  3: cds_mab_mix_460           PGT121 (Catalant)             PGT121   Single mAb          35       0.09651576
+#>  4: cds_mab_mix_461 PGT121 (Reference Standard)             PGT121   Single mAb           8       0.06997322
+#>  5: cds_mab_mix_476 PGT121 (Reference Standard)             PGT121   Single mAb          NA               NA
+#>  6: cds_mab_mix_477     PGT121 (STAB147.Tox 22)             PGT121   Single mAb           7       0.06212521
+#>  7: cds_mab_mix_478     PGT121 (STAB150.GMP 20)             PGT121   Single mAb           7       0.07924972
+#>  8: cds_mab_mix_479     PGT121 (STAB154.GMP 10)             PGT121   Single mAb           7       0.06973818
+#>  9: cds_mab_mix_588     PGT121 Parental (MS-42)             PGT121   Single mAb          NA               NA
+#> 10: cds_mab_mix_589      PGT121 variant (MS-43)             PGT121   Single mAb          NA               NA
+#> 11: cds_mab_mix_590     PGT121 variant (MS-414)             PGT121   Single mAb          NA               NA
+#> 12: cds_mab_mix_591     PGT121 variant (MS-444)             PGT121   Single mAb          NA               NA
+#> 13:  cds_mab_mix_67           PGT121 + PGDM1400                     MAb mixture         293       0.01915122
+#> 14:  cds_mab_mix_68             PGT121 + PGT145                     MAb mixture         293       0.06146521
+```
