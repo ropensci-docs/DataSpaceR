@@ -1,0 +1,80 @@
+# 
+
+  
+
+`DataSpaceR` is an R interface to [the CAVD
+DataSpace](https://dataspace.cavd.org), a data sharing and discovery
+tool that facilitates exploration of HIV immunological data from
+pre-clinical and clinical HIV vaccine studies.
+
+DataSpace provides data for several immunoassays from several studies:
+
+- ADCP
+- Binding Antibody Multiplex Assay (BAMA)
+- Subject Demographics
+- Fc Array
+- IFNg Elispot
+- Intracellular Cytokine Staining (ICS)
+- Microarray Data
+- Monoclonal Antibody Pharmacokinetics
+- NAB non-standard data
+- Neutralizing Antibody Assay (NAb)
+- Neutralizing Monoclonal Antibody Assay
+- Treatment assignments
+- Viral load
+
+This package is intended for use by immunologists, bioinformaticians,
+and statisticians in HIV vaccine research, or anyone interested in the
+analysis of HIV immunological data across assays, studies, and time.
+
+This package simplifies access to the database by taking advantage of
+the standardization of the database to hide all the
+[Rlabkey](https://cran.r-project.org/package=Rlabkey) specific code away
+from the user, and it allows the users to access the study-specific
+datasets via [an object-oriented
+paradigm](https://cran.r-project.org/package=R6/readme/README.html).
+
+# Package index
+
+## All functions
+
+- [`DataSpaceConnection`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceConnection.md)
+  : The DataSpaceConnection class
+- [`DataSpaceDaash`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceDaash.md)
+  : The DataSpaceDAASH class
+- [`DataSpaceDonors`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceDonors.md)
+  : The DataSpaceDonors class
+- [`DataSpaceGroups`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceGroups.md)
+  : The DataSpaceGroups class
+- [`DataSpaceMabs`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceMabs.md)
+  : The DataSpaceMab class
+- [`DataSpaceR-package`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceR-package.md)
+  [`DataSpaceR`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceR-package.md)
+  : DataSpaceR
+- [`DataSpaceStudies`](https://docs.ropensci.org/DataSpaceR/reference/DataSpaceStudies.md)
+  : The DataSpaceStudies class
+- [`checkNetrc()`](https://docs.ropensci.org/DataSpaceR/reference/checkNetrc.md)
+  : Check netrc file
+- [`connectDS()`](https://docs.ropensci.org/DataSpaceR/reference/connectDS.md)
+  : Create a connection to DataSpace
+- [`getNetrcPath()`](https://docs.ropensci.org/DataSpaceR/reference/getNetrcPath.md)
+  : Get a default netrc file path
+- [`writeNetrc()`](https://docs.ropensci.org/DataSpaceR/reference/writeNetrc.md)
+  : Write a netrc file
+
+# Articles
+
+### All vignettes
+
+- [Accessing DataSpace
+  DAASH](https://docs.ropensci.org/DataSpaceR/articles/DataSpace_DAASH.md):
+- [Introduction to
+  DataSpaceR](https://docs.ropensci.org/DataSpaceR/articles/DataSpaceR.md):
+- [Accessing Monoclonal Antibody
+  Data](https://docs.ropensci.org/DataSpaceR/articles/Monoconal_Antibody_Data.md):
+- [Accessing Publication
+  Data](https://docs.ropensci.org/DataSpaceR/articles/Publication_Data.md):
+- [Accessing Studies and
+  Groups](https://docs.ropensci.org/DataSpaceR/articles/Studies_Groups.md):
+- [Using The Virus Name Mapping
+  Tables](https://docs.ropensci.org/DataSpaceR/articles/Virus_Name_Mapping_Tables.md):
