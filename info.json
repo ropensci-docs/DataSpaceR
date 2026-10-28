@@ -1,0 +1,13 @@
+{
+  "commit": {
+    "commit": "c581e386c6ffd684cd5ad2f4e113293d161f8acd",
+    "author": "Jason Taylor <42221209+jmtaylor-fhcrc@users.noreply.github.com>",
+    "time": "2026-10-27T21:22:34Z",
+    "files": 21,
+    "merge": false,
+    "message": "Revision release for DataSpaceR - v1.0.3 (#54)\n\n* Simplify pdb export name, fix bug fetching structures by sequence_id\n* Fix typos in `getDonors`\n* Split `getMabs` datasets query for large API calls\n* Clean up documentation"
+  },
+  "repo": "https://github.com/ropensci/DataSpaceR",
+  "pkg": "DataSpaceR",
+  "time": "2026-10-28T00:00:07Z"
+}
